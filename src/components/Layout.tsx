@@ -16,7 +16,11 @@ const Layout = ({ children }: { children: ReactNode }) => {
           <li><Link href="/bio">Bio</Link></li>
         </ul>
       </nav>
-      <main className="p-6">{children}</main>
+
+      {/* Wichtig: zentrierter, begrenzter Bereich */}
+      <main className="max-w-7xl mx-auto px-4 py-6">
+        {children}
+      </main>
     </div>
   );
 };

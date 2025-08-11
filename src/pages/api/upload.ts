@@ -27,13 +27,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const file = files.file;
-    const filePath = Array.isArray(file) ? file[0].filepath : file?.filepath;
+    const filePath = Array.isArray(file) ? file[0]?.filepath : (file as any)?.filepath;
     const fileName = filePath ? path.basename(filePath) : null;
 
     if (!fileName) {
+      console.error('Fehler: Dateiname konnte nicht bestimmt werden.');
       return res.status(400).json({ error: 'Dateiname konnte nicht bestimmt werden.' });
     }
 
+    console.log('Datei erfolgreich hochgeladen:', fileName);
     res.status(200).json({ path: "/uploads/" + fileName });
   });
 }

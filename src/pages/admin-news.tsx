@@ -163,7 +163,10 @@ export default function NewsAdmin() {
                   });
 
                   const data = await res.json();
-                  updateNews(index, "image", data.path);
+
+                  // Resize image logic
+                  const resizedImagePath = `/api/resize?path=${data.path}&maxWidth=800&maxHeight=600`;
+                  updateNews(index, "image", resizedImagePath);
                 } catch {
                   alert("Bild-Upload fehlgeschlagen");
                 }
@@ -179,6 +182,13 @@ export default function NewsAdmin() {
           </div>
         ))}
       </div>
+
+      <button
+        onClick={() => saveNews(news)}
+        className="bg-green-600 hover:bg-green-800 text-white px-4 py-2 rounded mt-4"
+      >
+        Änderungen speichern
+      </button>
     </Layout>
   );
 }

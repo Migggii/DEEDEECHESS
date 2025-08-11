@@ -52,7 +52,7 @@ export default function NewsDetailPage() {
             <img
               src={newsItem.image}
               alt={newsItem.title}
-              className="w-full h-64 object-cover rounded-lg mt-4"
+              className="w-full h-auto max-h-64 object-cover rounded-md mt-4"
             />
           )}
 
