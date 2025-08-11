@@ -12,7 +12,7 @@ type Tournament = {
 
 const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-function getMonthData(year: number, month: number) {
+export function getMonthData(year: number, month: number) {
   const date = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const startDay = (date.getDay() + 6) % 7; // Montag = 0
