@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import textBlocks from "@/data/textBlocks.json";
 
 type NewsItem = {
   id: string;
@@ -41,6 +42,11 @@ export default function NewsPage() {
           Fehler beim Laden der News: {error}
         </p>
       )}
+
+      <div className="mb-8 p-4 bg-gray-100 rounded">
+        <h2 className="text-xl font-bold mb-2">{textBlocks.newsPage.title}</h2>
+        <p className="text-gray-700">{textBlocks.newsPage.content}</p>
+      </div>
 
       <Carousel
         responsive={{

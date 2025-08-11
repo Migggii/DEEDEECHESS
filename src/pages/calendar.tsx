@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import { useEffect, useState } from "react";
+import textBlocks from "@/data/textBlocks.json";
 
 type Tournament = {
   day: number;
@@ -83,6 +84,11 @@ export default function CalendarPage() {
           {monthNames[month]} {year}
         </h2>
         <button onClick={() => handleMonthChange("next")}>&gt;</button>
+      </div>
+
+      <div className="mb-8 p-4 bg-gray-100 rounded">
+        <h2 className="text-xl font-bold mb-2">{textBlocks.calendarPage.title}</h2>
+        <p className="text-gray-700">{textBlocks.calendarPage.content}</p>
       </div>
 
       <div className="grid grid-cols-7 gap-2 text-center text-sm text-white">

@@ -29,17 +29,29 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const file = files.file;
     type FormidableFile = { filepath?: string };
     const filePath = Array.isArray(file)
-      ? (file[0] as FormidableFile)?.filepath
-      : (file as FormidableFile)?.filepath;
-    const fileName = filePath ? path.basename(filePath) : null;
+      ? file[0]?.filepath
+      : file?.filepath;
 
-    if (!fileName) {
-      console.error('Fehler: Dateiname konnte nicht bestimmt werden.');
-      return res.status(400).json({ error: 'Dateiname konnte nicht bestimmt werden.' });
+    if (!filePath) {
+      console.error('Fehler: Dateipfad konnte nicht bestimmt werden.');
+      return res.status(400).json({ error: 'Dateipfad konnte nicht bestimmt werden.' });
     }
+
+    const fileName = path.basename(filePath);
 
     console.log('Datei erfolgreich hochgeladen:', fileName);
     res.status(200).json({ path: "/uploads/" + fileName });
   });
+}
+
+{
+  "newsPage": {
+    "title": "Willkommen auf der News-Seite!",
+    "content": "Hier finden Sie die neuesten Informationen, Updates und spannende Inhalte rund um DeeDeeChess."
+  },
+  "aboutPage": {
+    "title": "Über uns",
+    "content": "Erfahren Sie mehr über DeeDeeChess und unsere Mission."
+  }
 }
 
