@@ -164,9 +164,8 @@ export default function NewsAdmin() {
 
                   const data = await res.json();
 
-                  // Resize image logic
-                  const resizedImagePath = `/api/resize?path=${data.path}&maxWidth=800&maxHeight=600`;
-                  updateNews(index, "image", resizedImagePath);
+                  // Direkt den Bildpfad speichern
+                  updateNews(index, "image", data.path);
                 } catch {
                   alert("Bild-Upload fehlgeschlagen");
                 }
