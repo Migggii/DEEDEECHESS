@@ -1,4 +1,4 @@
-import { IncomingForm } from 'formidable';
+import { IncomingForm, File } from 'formidable';
 import fs from 'fs';
 import path from 'path';
 import type { NextApiRequest, NextApiResponse } from 'next';
@@ -10,7 +10,7 @@ export const config = {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const uploadDir = path.join(process.cwd(), '/public/uploads');
+  const uploadDir = path.join(process.cwd(), 'public', 'uploads');
 
   const form = new IncomingForm({
     uploadDir,
@@ -26,8 +26,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(500).json({ error: err.message });
     }
 
-    const file = files.file;
-    const filePath = Array.isArray(file) ? file[0]?.filepath : (file as any)?.filepath;
+    const file = files.file as File | File[];
+    const filePath = Array.isArray(file) ? file[0]?.filepath : file?.filepath;
     const fileName = filePath ? path.basename(filePath) : null;
 
     if (!fileName) {
