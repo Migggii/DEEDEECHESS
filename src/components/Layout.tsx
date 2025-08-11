@@ -12,7 +12,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
           <li><Link href="/calendar">Calendar</Link></li>
           <li><Link href="/competitions">Competitions</Link></li>
           <li><Link href="/social">Social</Link></li>
-          <li><Link href="/donation">Donate</Link></li>
+          <li><Link href="/donate">Donate</Link></li>
           <li><Link href="/bio">Bio</Link></li>
         </ul>
       </nav>

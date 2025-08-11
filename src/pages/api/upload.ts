@@ -27,7 +27,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const file = files.file;
-    const filePath = Array.isArray(file) ? file[0]?.filepath : (file as any)?.filepath;
+    type FormidableFile = { filepath?: string };
+    const filePath = Array.isArray(file)
+      ? (file[0] as FormidableFile)?.filepath
+      : (file as FormidableFile)?.filepath;
     const fileName = filePath ? path.basename(filePath) : null;
 
     if (!fileName) {
